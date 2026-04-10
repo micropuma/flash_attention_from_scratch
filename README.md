@@ -25,6 +25,14 @@ pip install --no-build-isolation .
 pip install ./py
 ```
 
+Some extra wheels need to install by hand:  
+```bash  
+pip install torch torchvision
+pip install parameterized
+pip install psutil
+MAX_JOBS=4 pip install flash-attn --no-build-isolation     # 一定在no-build-isolation下装flashattn，flashattn编译过程中用的threads比较多，可以加MAX_JOBS限制threads使用数。
+```
+
 ## Testing
 
 To test the kernels, you'll need a CUDA GPU with compute capability 8.x (A100, RTX 3090/4090, etc).
@@ -34,6 +42,8 @@ python py/flash_helpers/test/test.py
 ```
 
 ## Benchmarks
+
+> Comment out `import flash_attn_3_cuda` in `py/flash_helpers/test/utils.py` as FlashAttn3 not supported on Ampere architecture.
 
 Here are the performances of each kernel relative to the official implementation.
 

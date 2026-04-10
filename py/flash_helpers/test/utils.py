@@ -4,7 +4,7 @@ import einops
 import torch
 
 import flash_attn_2_cuda  # isort: skip
-import flash_attn_3_cuda
+# import flash_attn_3_cuda
 
 BATCH_SIZE_FOR_SEQ_LEN = {
     512: 16,
